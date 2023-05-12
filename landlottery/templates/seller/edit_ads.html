@@ -1,0 +1,252 @@
+{% extends 'seller/base.html' %}
+
+{% block body %}
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+          </ol>
+
+          <!-- Icon Cards-->
+          <!-- <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-comments"></i>
+                  </div>
+                  <div class="mr-5">26 New Messages!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">View Details</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-list"></i>
+                  </div>
+                  <div class="mr-5">11 New Tasks!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">View Details</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-success o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                  </div>
+                  <div class="mr-5">123 New Orders!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">View Details</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-danger o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-life-ring"></i>
+                  </div>
+                  <div class="mr-5">13 New Tickets!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">View Details</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Area Chart Example-->
+          <!-- <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-chart-area"></i>
+              Area Chart Example</div>
+            <div class="card-body">
+              <canvas id="myAreaChart" width="100%" height="30"></canvas>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div> -->
+
+          <!-- DataTables Example -->
+          <div class="card mb-3">
+            <!-- <div class="card-header">
+              <i class="fas fa-table"></i>
+              Data Table Example</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                
+              </div>
+            </div> -->
+            <div class="container">
+              <div class=" mx-auto mt-5">
+                <!-- <div class="card-header">Login</div>
+                <div class="card-body"> -->
+                  <form method="post" action="{% url 'handle_edit_ads' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="r_t" type="text" id="inputEmail" value="{{r.room_type}}" class="form-control" placeholder="Room Type" required="required" autofocus="autofocus">
+                        <label for="inputEmail">Room Type</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="street" type="text" id="input" value="{{r.street}}" class="form-control" placeholder="Street" required="required">
+                        <label for="input">Street</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="r_a" type="text" id="inputPassword" value="{{r.room_address}}" class="form-control" placeholder="Room Address" required="required">
+                        <label for="inputPassword">Room Address(City)</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="eir" type="text" value="{{r.eir}}" id="inpu" class="form-control" placeholder="Latitude" required="required">
+                        <label for="inpu">EirCode</label>
+                      </div>
+                    </div>
+                    <div style="display:flex;flex-direction:row;justify-content: space-around;" >
+                      <div class="form-group">
+                        <div class="form-label-group">
+                          <input name="mobile" type="number" id="inputPasswor" class="form-control" placeholder="Country Code" value="+353" required="required" disabled>
+                          <label for="inputPasswor">Country Code: +353</label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-label-group">
+                          <input name="mobile" type="number" max="9999999999" value="{{r.number}}" id="inputPassword1" class="form-control" placeholder="Mobile Number" required="required">
+                          <label for="inputPassword1">Mobile Number</label>
+                        </div>
+                      </div>
+                    </div>
+                    <input type="hidden" name="pk" value="{{r.pk}}">
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <img src="{{r.image.url}}" width="40px" height="40px" alt="No Image">
+                        <input name="image" type="file" id="inputPassword2" class="form-control" placeholder="Image" required="required">
+                        <label for="inputPassword2">Image</label>
+                      </div>
+                    </div>
+                    <div style="display:flex;flex-direction:row;justify-content: space-around;">
+                      <div class="form-group">
+                        <div class="form-label-group">
+                          <input name="rent" type="text" id="inputPass" class="form-control" placeholder="Rent" required="required" disabled>
+                          <label for="inputPass">Currency: Euro</label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-label-group">
+                          <input name="rent" type="number" step="any" value="{{r.rent}}" id="inputPassword3" class="form-control" placeholder="Rent" required="required">
+                          <label for="inputPassword3">Rent</label>
+                        </div>
+                      </div>
+                    </div> 
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <textarea name="desc" type="text" id="inputPassword4" class="form-control" placeholder="Description"  required="required">{{r.desc}}</textarea>
+                        <!-- <label for="inputPassword4">Description</label> -->
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="remember-me">
+                          Remember Password
+                        </label>
+                      </div>
+                    </div> -->
+                    <button type="submit" value="submit" class="btn btn-primary btn-block">Post Ad</button>
+                  </form>
+                  <!-- <form method="post" action="{% url 'handle_edit_ads' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="r_t" type="text" value="{{r.room_type}}" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                        <label for="inputEmail">Room Type</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="r_a" type="text" value="{{r.room_address}}" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                        <label for="inputPassword">Room Address</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="mobile" type="number" value="{{r.number}}" id="inputPassword1" class="form-control" placeholder="Password" required="required">
+                        <label for="inputPassword1">Mobile Number</label>
+                      </div>
+                    </div>
+                    <input type="hidden" name="pk" value="{{r.pk}}">
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <img src="{{r.image.url}}" width="40px" height="40px" alt="No Image">
+                        <input name="image" type="file"  id="inputPassword2" class="form-control" placeholder="Image">
+                        <label for="inputPassword2">Image</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <input name="rent" type="text" id="inputPassword3" value="{{r.rent}}" class="form-control" placeholder="Rent" required="required">
+                        <label for="inputPassword3">Rent</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-label-group">
+                        <textarea name="desc" type="text" id="inputPassword4" class="form-control" placeholder="Description" required="required">{{r.desc}}</textarea>
+                        <label for="inputPassword4">Description</label>
+                      </div>
+                    </div> -->
+                    <!-- <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" value="remember-me">
+                          Remember Password
+                        </label>
+                      </div>
+                    </div> -->
+                    <!-- <button type="submit" value="submit" class="btn btn-primary btn-block">Post Ad</button>
+                  </form> -->
+                  <!-- <div class="text-center">
+                    <a class="d-block small mt-3" href="register.html">Register an Account</a>
+                    <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                  </div> -->
+                <!-- </div>
+              </div> -->
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+        
+
+{% endblock %}
